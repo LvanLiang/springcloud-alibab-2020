@@ -1,0 +1,9 @@
+server:
+  port: 8040
+
+spring:
+  application:
+    name: order-service-zk
+  cloud:
+    zookeeper:
+      connect-string: 192.168.3.129:2181

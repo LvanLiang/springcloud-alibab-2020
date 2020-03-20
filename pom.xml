@@ -15,6 +15,7 @@
         <module>api-commons</module>
         <module>consumer-order</module>
         <module>provider-payment-zk</module>
+        <module>consumer-order-zk</module>
     </modules>
 
 
