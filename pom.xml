@@ -16,6 +16,8 @@
         <module>consumer-order</module>
         <module>provider-payment-zk</module>
         <module>consumer-order-zk</module>
+        <module>provider-payment-consul</module>
+        <module>consumer-order-consul</module>
     </modules>
 
 
