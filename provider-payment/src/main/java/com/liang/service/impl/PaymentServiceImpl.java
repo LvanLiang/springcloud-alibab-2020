@@ -6,6 +6,7 @@ import com.liang.service.PaymentService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @author Liangxp
@@ -18,6 +19,8 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public int insert(Payment payment) {
+        payment.setGmtCreate(new Date());
+        payment.setGmtModified(new Date());
         return paymentMapper.insert(payment);
     }
 
