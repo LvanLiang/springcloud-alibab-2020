@@ -2,12 +2,18 @@ package com.liang.controller;
 
 import com.liang.common.Result;
 import com.liang.entity.Payment;
+import com.liang.lb.LoadBalancer;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.net.URI;
+import java.util.List;
 
 /**
  * @author Liangxp
@@ -21,6 +27,12 @@ public class OrderController {
 
     @Resource
     private RestTemplate restTemplate;
+
+    @Resource
+    private DiscoveryClient discoveryClient;
+
+    @Resource
+    private LoadBalancer loadBalancer;
 
     @GetMapping("/getById/{id}")
     public Result<Payment> getById(@PathVariable Long id){
@@ -50,5 +62,20 @@ public class OrderController {
     @PostMapping("/insert")
     public Result insert(@RequestBody Payment payment) {
         return restTemplate.postForObject(PAYMENT_URL.concat("/payment/insert"), payment, Result.class);
+    }
+
+    /**
+     * 测试 自己写的轮询负载均衡算法
+     * @return
+     */
+    @GetMapping("/getById/lb")
+    public Result getByMyLb() {
+        List<ServiceInstance> instanceList = discoveryClient.getInstances("PAYMENT-SERVICE");
+        if (CollectionUtils.isEmpty(instanceList)){
+            return new Result<>(500, "找不到服务");
+        }
+        ServiceInstance serviceInstance = loadBalancer.instances(instanceList);
+        URI uri = serviceInstance.getUri();
+        return restTemplate.getForObject(uri + "/payment/myLb", Result.class);
     }
 }
