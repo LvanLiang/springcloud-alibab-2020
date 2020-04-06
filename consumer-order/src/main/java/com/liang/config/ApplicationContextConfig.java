@@ -1,5 +1,7 @@
 package com.liang.config;
 
+import feign.Logger;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -12,8 +14,16 @@ import org.springframework.web.client.RestTemplate;
 public class ApplicationContextConfig {
 
     @Bean
-    // @LoadBalanced
+    @LoadBalanced
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
+    }
+
+    /**
+     * openfeign 日志配置
+     */
+    @Bean
+    public Logger.Level feignLoggerLevel() {
+        return Logger.Level.FULL;
     }
 }

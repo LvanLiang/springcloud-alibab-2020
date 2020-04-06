@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: order-service
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 
 eureka:
   client:
@@ -13,3 +16,15 @@ eureka:
   instance:
     instance-id: order-service
     prefer-ip-address: true
+
+# feign超时控制
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+# feign日志
+logging:
+  level:
+    com.liang.service.*: debug

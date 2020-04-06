@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Liangxp
@@ -69,4 +70,21 @@ public class PaymentController {
     public Result getPaymentLb() {
         return new Result<>(200, port, null);
     }
+
+
+    /**
+     * 测试Feign超时控制
+     * @return 端口
+     */
+    @GetMapping(value = "/feign/timeout")
+    public String paymentFeignTimeout() {
+        // 业务逻辑处理正确，但是需要耗费3秒钟
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return port;
+    }
+
 }
