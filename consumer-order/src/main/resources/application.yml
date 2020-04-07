@@ -17,13 +17,17 @@ eureka:
     instance-id: order-service
     prefer-ip-address: true
 
-# feign超时控制
 feign:
+  # feign超时控制
   client:
     config:
       default:
         connectTimeout: 5000
         readTimeout: 5000
+  # 开启feign对hystrix服务降级的支持
+  hystrix:
+    enabled: true
+
 # feign日志
 logging:
   level:
