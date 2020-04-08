@@ -19,6 +19,7 @@
         <module>provider-payment-consul</module>
         <module>consumer-order-consul</module>
         <module>provider-payment-hystrix</module>
+        <module>cloud-gateway</module>
     </modules>
 
 
