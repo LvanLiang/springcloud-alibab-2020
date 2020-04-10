@@ -20,6 +20,8 @@
         <module>consumer-order-consul</module>
         <module>provider-payment-hystrix</module>
         <module>cloud-gateway</module>
+        <module>stream-rabbitmq-produce</module>
+        <module>stream-rabbitmq-consumer</module>
     </modules>
 
 
