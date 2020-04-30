@@ -6,16 +6,16 @@ dubbo:
     # 挂载到 Spring Cloud 注册中心
     address: spring-cloud://localhost
   cloud:
-    subscribed-services: sca-provider
+    subscribed-services: sca-order-consumer
   consumer:
     check: false
 
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.186.128:3306/yuhb-test?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    url: jdbc:mysql://192.168.186.128:3306/seata-order?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
     username: root
-    password: 123456
+    password: root
 
   cloud:
     nacos:

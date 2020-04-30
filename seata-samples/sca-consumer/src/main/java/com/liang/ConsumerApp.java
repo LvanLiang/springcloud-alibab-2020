@@ -8,4 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @EnableDiscoveryClient
 public class ConsumerApp {
+    public static void main(String[] args) {
+
+    }
 }

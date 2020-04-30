@@ -5,13 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
+ * 库存服务
  * @author Liangxp
- * @date 2020/4/28 16:01
+ * @date 2020/4/29 12:29
  */
 @EnableDiscoveryClient
 @SpringBootApplication
-public class ProviderApp {
+public class StorageProviderApp {
     public static void main(String[] args) {
-        SpringApplication.run(ProviderApp.class, args);
+        SpringApplication.run(StorageProviderApp.class, args);
     }
 }

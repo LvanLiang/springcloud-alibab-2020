@@ -14,7 +14,8 @@
     <modules>
         <module>sca-common</module>
         <module>sca-consumer</module>
-        <module>sca-provider</module>
+        <module>sca-account-provider</module>
+        <module>sca-storage-provider</module>
     </modules>
 
     <dependencies>
