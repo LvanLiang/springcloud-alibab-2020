@@ -1,31 +1,43 @@
 server:
-  port: 18081
+  port: 2005
 
 dubbo:
   registry:
     # 挂载到 Spring Cloud 注册中心
     address: spring-cloud://localhost
-  cloud:
-    subscribed-services: sca-account-provider,sca-storage-provider
   consumer:
     check: false
+  cloud:
+    subscribed-services: sca-account-provider
+  protocol:
+    port: -1
 
 spring:
+  application:
+    name: sca-consumer
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.186.128:3306/seata-order?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    url: jdbc:mysql://192.168.11.140:3306/seata_order
     username: root
     password: root
-
   cloud:
     nacos:
-      # Nacos 服务注册发现
       discovery:
-        server-addr: 127.0.0.1:8848
-    alibaba:
-      seata:
-        # Seata 事务组名称，对应file.conf文件中 vgroup_mapping.sca-customer-seata-tx-service-group
-        tx-service-group: sca-customer-seata-tx-service-group
+        server-addr: localhost:8848
+
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: ${spring.application.name}-group
+  config:
+    type: file
+  registry:
+    type: file
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+
+
+

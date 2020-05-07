@@ -17,16 +17,4 @@
         <module>sca-account-provider</module>
         <module>sca-storage-provider</module>
     </modules>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.2.5</version>
-        </dependency>
-    </dependencies>
 </project>

@@ -1,7 +1,6 @@
 package com.liang.services;
 
 import com.liang.api.AccountService;
-import com.liang.domain.Account;
 import com.liang.mapper.AccountMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;

@@ -1,6 +1,3 @@
-server:
-  port: 2002
-
 spring:
   application:
     name: sca-account-provider
@@ -12,9 +9,6 @@ spring:
     username: root
     password: root
   cloud:
-    alibaba:
-      seata:
-        tx-service-group: fsp_tx_group
     nacos:
       discovery:
         server-addr: localhost:8848
@@ -22,7 +16,7 @@ spring:
 dubbo:
   scan:
     # dubbo 服务扫描基准包
-    base-packages: com.liang.service
+    base-packages: com.liang.services
   protocol:
     # dubbo 协议
     name: dubbo
@@ -36,31 +30,18 @@ dubbo:
     subscribed-services: ""
 
 seata:
-  # Seata 应用编号，默认为 ${spring.application.name}
+  enabled: true
   application-id: ${spring.application.name}
-  # Seata 事务组编号，用于 TC 集群名
   tx-service-group: ${spring.application.name}-group
-  # Seata 服务配置项，对应 ServiceProperties 类
-  service:
-    # 虚拟组和分组的映射
-    vgroup-mapping:
-      order-service-group: default
-  # Seata 注册中心配置项，对应 RegistryProperties 类
-  registry:
-    type: nacos # 注册中心类型，默认为 file
-    nacos:
-      cluster: default # 使用的 Seata 分组
-      namespace: # Nacos 命名空间
-      serverAddr: localhost # Nacos 服务地址
   config:
-    type: nacos
-    nacos:
-      server-addr: localhost
+    type: file
+  registry:
+    type: file
 
 logging:
   level:
-    io:
-      seata: info
+    io.seata: info
+    com.liang.mapper: debug
 
 mybatis:
   mapperLocations: classpath:mapper/*.xml
