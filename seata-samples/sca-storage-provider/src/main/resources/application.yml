@@ -1,6 +1,3 @@
-server:
-  port: 2002
-
 spring:
   application:
     name: sca-storage-provider
@@ -12,9 +9,6 @@ spring:
     username: root
     password: root
   cloud:
-    alibaba:
-      seata:
-        tx-service-group: fsp_tx_group
     nacos:
       discovery:
         server-addr: localhost:8848
@@ -32,12 +26,22 @@ dubbo:
     # 挂载到 Spring Cloud 注册中心
     address: spring-cloud://localhost
   cloud:
+    # 设置订阅的应用列表，默认为 * 订阅所有应用。这里，设置为 '' 表示空，不订阅任何的应用。
     subscribed-services: ""
+
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: ${spring.application.name}-group
+  service:
+    vgroup-mapping:
+      sca_group: default
 
 logging:
   level:
     io:
       seata: info
+    com.liang.mapper: debug
 
 mybatis:
   mapperLocations: classpath:mapper/*.xml

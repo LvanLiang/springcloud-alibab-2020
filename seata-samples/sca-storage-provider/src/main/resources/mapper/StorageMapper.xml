@@ -12,7 +12,7 @@
 
     <update id="decrease">
         update t_storage
-        set residue = used + #{count},residue = residue - #{count}
+        set used = used + #{count},residue = total - #{count}
         where product_id = #{productId};
     </update>
 

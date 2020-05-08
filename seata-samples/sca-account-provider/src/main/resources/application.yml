@@ -16,7 +16,7 @@ spring:
 dubbo:
   scan:
     # dubbo 服务扫描基准包
-    base-packages: com.liang.services
+    base-packages: com.liang.service
   protocol:
     # dubbo 协议
     name: dubbo
@@ -33,14 +33,14 @@ seata:
   enabled: true
   application-id: ${spring.application.name}
   tx-service-group: ${spring.application.name}-group
-  config:
-    type: file
-  registry:
-    type: file
+  service:
+    vgroup-mapping:
+      sca_group: default
 
 logging:
   level:
-    io.seata: info
+    io:
+      seata: info
     com.liang.mapper: debug
 
 mybatis:

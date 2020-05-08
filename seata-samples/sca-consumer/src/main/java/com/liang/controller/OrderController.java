@@ -1,12 +1,12 @@
 package com.liang.controller;
 
-import com.liang.api.AccountService;
+import com.liang.api.OrderService;
 import com.liang.domain.Order;
-import io.seata.spring.annotation.GlobalTransactional;
-import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author Liangxp
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/order")
 public class OrderController {
 
-    @Reference
-    private AccountService accountService;
+    @Resource
+    private OrderService orderService;
 
     /**
      * 异常之后，调用accountService就会回滚
@@ -25,10 +25,8 @@ public class OrderController {
      * @return
      */
     @GetMapping("/buy")
-    @GlobalTransactional
     public Object buy(Order order) {
-        accountService.decrease(order.getUserId(), order.getMoney());
-        int num = 10 / 0;
+        orderService.buy(order);
         return "ok";
     }
 }

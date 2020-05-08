@@ -8,7 +8,7 @@ dubbo:
   consumer:
     check: false
   cloud:
-    subscribed-services: sca-account-provider
+    subscribed-services: sca-account-provider,sca-storage-provider
   protocol:
     port: -1
 
@@ -19,7 +19,7 @@ spring:
     allow-bean-definition-overriding: true
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.11.140:3306/seata_order
+    url: jdbc:mysql://localhost:3306/seata_order
     username: root
     password: root
   cloud:
@@ -31,10 +31,14 @@ seata:
   enabled: true
   application-id: ${spring.application.name}
   tx-service-group: ${spring.application.name}-group
-  config:
-    type: file
-  registry:
-    type: file
+  service:
+    vgroup-mapping:
+      sca_group: default
+
+logging:
+  level:
+    io:
+      seata: info
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

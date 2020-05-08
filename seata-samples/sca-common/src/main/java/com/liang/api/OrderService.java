@@ -7,5 +7,5 @@ import com.liang.domain.Order;
  * @date 2020/4/28 16:26
  */
 public interface OrderService {
-    void add(Order order);
+    void buy(Order order);
 }
