@@ -32,10 +32,14 @@ dubbo:
 seata:
   enabled: true
   application-id: ${spring.application.name}
-  tx-service-group: ${spring.application.name}-group
+  tx-service-group: sca-group
   service:
     vgroup-mapping:
-      sca_group: default
+      sca-group: sca
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 192.168.11.201:8880
 
 logging:
   level:
